@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	<com.google.android.maps.MapView
+	    android:id="@+id/mapa"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:apiKey="0T0O_IV9IB2oHGYKrXHDlBWnzlswFlh0THIdlmw"
+	    android:clickable="true" >
+	</com.google.android.maps.MapView>
+
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Back"
+	    android:onClick="goToMenu" />
+
+</RelativeLayout>
