@@ -43,6 +43,12 @@
             android:layout_height="wrap_content"
             android:text="About"
             android:onClick="goToAbout" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kill"
+            android:onClick="killApp" />
  <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"

@@ -18,6 +18,11 @@ public class ListView extends ListActivity {
 	String[] from=new String[] {"Date","Latitude","Longitude"};
 	int[] to=new int[]{R.id.date,R.id.Latitude,R.id.Longitude};
 	
+	
+	/*
+	 * Move points from db to HashMap after that create rows for each point.
+	 * 
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,4 +70,12 @@ public class ListView extends ListActivity {
         intent.putExtra("com.example.geotrack.ListView",Eventos.get(position).get("Date"));
         startActivity(intent);
     }
+    
+    /*
+     * Finish the activity and back to Menu
+     * 
+     */
+    public void goToMenu(View view) {
+		finish();
+	}
 }

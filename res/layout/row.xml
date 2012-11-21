@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="horizontal" >
 
     <LinearLayout
-         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingRight="4px">
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:orientation="vertical" 
+          android:paddingRight="4px"
+          android:paddingTop="6px">
 
-        <QuickContactBadge
-            android:id="@+id/quickContactBadge1"
+        <ImageView
+            android:id="@+id/imageView1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@drawable/earth" />
 
     </LinearLayout>
     
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="5dp">
-        <TextView android:id="@+id/Latitude"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
+        android:orientation="vertical" 
+        android:gravity="center"
+      >
+
+        <TextView
             
-        />
-        <TextView android:id="@+id/Longitude"
+            android:id="@+id/Longitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
-           
-        />
-        <TextView android:id="@+id/date"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/Latitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-           
-        />
+            android:text="Lat:"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp" />
+
     </LinearLayout>
 
 </LinearLayout>

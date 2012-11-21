@@ -24,9 +24,8 @@ import android.widget.TextView;
 import com.example.geotrack.MyLocationListener;
 
 public class MainActivity extends Activity {
-	private int cont = 0;
 	private Timer timer;
-	private boolean enProgreso;
+	private boolean enProgreso; //Control thread
 	private boolean killSplash = false;
 	private Handler handler;
 	private LocationManager mlocManager;
@@ -63,7 +62,6 @@ public class MainActivity extends Activity {
 						checkGPS();
 					};
 				});
-
 				if (!enProgreso) {
 					timer.cancel();// end the thread
 				}
@@ -71,7 +69,6 @@ public class MainActivity extends Activity {
 		};
 		timer = new Timer();
 		timer.schedule(tarea, 100, 20000);// open a thread
-
 	}
 
 	/*
@@ -141,11 +138,7 @@ public class MainActivity extends Activity {
 	 */
 	public void goToAbout(View view) {
 		Intent intent = new Intent(this, About.class);
-		cont++;
 		startActivity(intent);
-		TextView txtCambiado = (TextView) findViewById(R.id.textView1);
-		String a = "" + cont;
-		txtCambiado.setText(a);
 	}
 
 	/*
@@ -169,11 +162,7 @@ public class MainActivity extends Activity {
 	 * Restore all the things
 	 */
 	private void restore(Bundle state) {
-		cont = 0;
-		if (state != null) {
-			int aux = state.getInt("cont");
-			cont = aux;
-		}
+		
 	}
 
 	/*
@@ -183,8 +172,13 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		if (cont != 0) {
-			outState.putInt("cont", cont);
-		}
+	}
+	
+	/*
+	 * Close the activity
+	 */
+	public void killApp(View view) {
+		enProgreso=false;
+		finish();
 	}
 }
