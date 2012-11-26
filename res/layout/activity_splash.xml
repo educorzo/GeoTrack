@@ -2,14 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="178dp" />
+ <fragment 
+            android:id="@+id/fragmento"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" 
+            android:layout_centerInParent="true"
+            class="com.example.geotrack.fragments"  ></fragment>
+    
 
 </RelativeLayout>

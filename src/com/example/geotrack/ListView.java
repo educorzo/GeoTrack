@@ -40,8 +40,8 @@ public class ListView extends ListActivity {
         		 do {
         			 HashMap<String,String> datosEvento=new HashMap<String, String>();
         			 datosEvento.put("Date", c.getString(0));
-        			 datosEvento.put("Latitude", ""+c.getInt(1));
-        			 datosEvento.put("Longitude",""+c.getInt(2));
+        			 datosEvento.put("Latitude", ""+c.getDouble(1));
+        			 datosEvento.put("Longitude",""+c.getDouble(2));
         			 datosEvento.put("id", ""+i);
         			 Eventos.add(datosEvento);
         			 i++;

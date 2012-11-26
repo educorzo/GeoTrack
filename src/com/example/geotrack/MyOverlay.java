@@ -17,16 +17,25 @@ import com.google.android.maps.OverlayItem;
 		public MyOverlay (Drawable defaultMarker){
 			super(boundCenterBottom(defaultMarker));
 		}
-		
+		/*
+		 * Add OverlayItem to ArrayList
+		 */
 		public void addOverlay(OverlayItem overlay) {
 		    mOverlays.add(overlay);
 		    populate();
 		}
+		/*
+		 * Get a Overlay
+		 * 
+		 */
 		@Override
 		protected OverlayItem createItem(int i) {
 		  return mOverlays.get(i);
 		}
-		
+		/*
+		 * 
+		 *GEt the size..
+		 */
 		@Override
 		public int size() {
 		  return mOverlays.size();

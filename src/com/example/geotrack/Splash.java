@@ -2,10 +2,11 @@ package com.example.geotrack;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 
-public class Splash extends Activity {
+public class Splash extends FragmentActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -13,6 +14,7 @@ public class Splash extends Activity {
         setContentView(R.layout.activity_splash);
         Log.wtf("Activity", "Start Splash");
     }
+    
     public void onActivityResult(){
     	
     }

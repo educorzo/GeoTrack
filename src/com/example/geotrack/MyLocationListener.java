@@ -10,6 +10,10 @@ public class MyLocationListener  implements LocationListener{
 	public double latitude=0;
 	public double longitude=0;
 	
+	/*When there are a challenge save the location.
+	 *
+	 *
+	 */
 	@Override
 	public void onLocationChanged(Location loc){
 		latitude=loc.getLatitude();
@@ -19,14 +23,14 @@ public class MyLocationListener  implements LocationListener{
 	
 	@Override
 	public void onProviderDisabled(String provider){
-		//Toast.makeText( getApplicationContext(),"Gps Disabled",Toast.LENGTH_SHORT ).show();
+		
 		Log.wtf("GPS", "Disable");
 	}
 
 
 	@Override
 	public void onProviderEnabled(String provider){
-		//Toast.makeText( getApplicationContext(),"Gps Enabled",Toast.LENGTH_SHORT).show();
+		
 		Log.wtf("GPS", "Enable");
 	}
 
