@@ -9,8 +9,10 @@ import android.graphics.drawable.Drawable;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
 
+/*
+ * The idea of this class is to have an ArrayList of OverlayItem and use them in a Map.
+ */
 	public class MyOverlay extends ItemizedOverlay{
-
 		private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 		private Context mContext;
 		

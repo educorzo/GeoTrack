@@ -47,16 +47,9 @@
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kill"
+            android:text="Close APP"
             android:onClick="killApp" />
- <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        
-        tools:context=".About" />
+
     </LinearLayout>
 
 </RelativeLayout>

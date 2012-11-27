@@ -20,20 +20,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import com.example.geotrack.MyLocationListener;
 
 public class MainActivity extends Activity {
 	private Timer timer;
 	private boolean enProgreso; //Control thread
-	private boolean killSplash = false;
-	private Handler handler;
-	private LocationManager mlocManager;
-	private LocationListener mlocListener;
-	private Location loc;
-	private double lastLongitude = 0;
-	private double lastLatitude = 0;
+	private boolean killSplash = false; //FLag for closing the Splash
+	private Handler handler; //Var for handle the gps
+	private LocationManager mlocManager; //Var for handle the gps
+	private LocationListener mlocListener; //Var for handle the gps
+	private Location loc; //Var for get info about location
+	private double lastLongitude = 0; //Var for now the last longitude
+	private double lastLatitude = 0; //Var to know the last latitude
 	private double MIN = 0; // CONSTANT, minimum distance GPS
-
+	private long TIME =20000; //CONSTANT, time to check the GPS
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,8 +47,26 @@ public class MainActivity extends Activity {
 		startActivityForResult(intent, 1);
 		/* Start to get locations */
 		threadGPS();
-	}
+		/*Activate button for fragmentDialog*/
+		 Button buttonOpenDialog = (Button)findViewById(R.id.button3);
+	        buttonOpenDialog.setOnClickListener(new Button.OnClickListener(){
 
+				@Override
+				public void onClick(View arg0) {
+					OpenDialog();
+				}});
+	}
+	
+	
+	/*
+	 * Create the dialogFragment
+	 */
+	 void OpenDialog(){
+	    	AboutDialogFragment myDialogFragment = AboutDialogFragment.newInstance();
+	    	myDialogFragment.show(getFragmentManager(), "myDialogFragment");
+	    }
+	 
+	 
 	/*
 	 * Create a thread for check the gps and put info on database It check every
 	 * 20 seconds
@@ -67,7 +87,7 @@ public class MainActivity extends Activity {
 			}
 		};
 		timer = new Timer();
-		timer.schedule(tarea, 100, 20000);// open a thread
+		timer.schedule(tarea, 100, TIME);// open a thread
 	}
 
 	/*
@@ -99,6 +119,7 @@ public class MainActivity extends Activity {
 		Location aux = new Location("111");
 		loc = mlocManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if(loc!=null){
+			/*If the splash is running, take the information and active the way to close the flash*/
 		if ( !loc.equals(aux) && killSplash == false) {
 			Log.wtf("Kill", "Splash");
 			lastLatitude = loc.getLatitude();
@@ -109,7 +130,7 @@ public class MainActivity extends Activity {
 			Date date=c.getTime();
 			insertDB(date.toLocaleString(), loc.getLatitude(), loc.getLongitude());
 		}
-			
+			/* Get the information, check the distance to the last point and save it on the DB*/
 		if (Math.abs(lastLatitude) - Math.abs(loc.getLatitude()) > MIN || Math.abs(lastLongitude)- Math.abs(loc.getLongitude()) > MIN) {
 			Calendar c = Calendar.getInstance();
 			Date date=c.getTime();
@@ -125,7 +146,7 @@ public class MainActivity extends Activity {
 		}
 		}
 	}
-
+		
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
@@ -133,15 +154,7 @@ public class MainActivity extends Activity {
 	}
 
 	/*
-	 * Button to go to activity About
-	 */
-	public void goToAbout(View view) {
-		Intent intent = new Intent(this, About.class);
-		startActivity(intent);
-	}
-
-	/*
-	 * Button for go to activity Map
+	 * Go to activity Map
 	 */
 	public void goToMap(View view) {
 		Intent intent = new Intent(this, Map.class);
@@ -150,15 +163,26 @@ public class MainActivity extends Activity {
 	}
 
 	/*
-	 * Button for go to activity ListView
+	 * Go to activity ListView
 	 */
 	public void goToList(View view) {
 		Intent intent = new Intent(this, ListView.class);
 		startActivity(intent);
 	}
-
+	
+	/*
+	 * Close the activity
+	 */
+	public void killApp(View view) {
+		enProgreso=false;
+		finish();
+	}
+	
+	
 	/*
 	 * Restore all the things
+	 * I used this method and next method with more data for trining purpose. But it is not necesary for the app 
+	 * and now they don't work
 	 */
 	private void restore(Bundle state) {
 		
@@ -173,11 +197,5 @@ public class MainActivity extends Activity {
 		super.onSaveInstanceState(outState);
 	}
 	
-	/*
-	 * Close the activity
-	 */
-	public void killApp(View view) {
-		enProgreso=false;
-		finish();
-	}
+	
 }

@@ -11,6 +11,7 @@ public class DataBase extends  SQLiteOpenHelper {
 	public DataBase(Context contexto, String nombre,CursorFactory factory, int version) {
 		super(contexto, nombre, factory, version);
 	}
+	
 	public DataBase(LocationListener contexto, String nombre,CursorFactory factory, int version) {
 		super((Context) contexto, nombre, factory, version);
 	}
