@@ -74,6 +74,7 @@ public class Map extends MapActivity {
 					longitudeN = (int) c.getDouble(2);
 				}
 				GeoPoint point = new GeoPoint(latitudeE, longitudeN);
+				//Insert the point on the overlayItem
 				OverlayItem overlayitem = new OverlayItem(point,c.getString(0), "" + c.getDouble(1) + " , " + c.getDouble(2));
 				itemizedoverlay.addOverlay(overlayitem);
 				mapOverlays.add(itemizedoverlay);

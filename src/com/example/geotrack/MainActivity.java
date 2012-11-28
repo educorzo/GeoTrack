@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 	private Location loc; //Var for get info about location
 	private double lastLongitude = 0; //Var for now the last longitude
 	private double lastLatitude = 0; //Var to know the last latitude
-	private double MIN = 0; // CONSTANT, minimum distance GPS
+	private double MIN = 0.0001; // CONSTANT, minimum distance GPS
 	private long TIME =20000; //CONSTANT, time to check the GPS
 	
 	@Override
@@ -116,7 +116,7 @@ public class MainActivity extends Activity {
 		mlocListener = new MyLocationListener();
 		mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,mlocListener);
 		loc = new Location("111");
-		Location aux = new Location("111");
+		Location aux = new Location("111");//It is a bad tricky for checking if the loc is really empty
 		loc = mlocManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if(loc!=null){
 			/*If the splash is running, take the information and active the way to close the flash*/
@@ -131,7 +131,7 @@ public class MainActivity extends Activity {
 			insertDB(date.toLocaleString(), loc.getLatitude(), loc.getLongitude());
 		}
 			/* Get the information, check the distance to the last point and save it on the DB*/
-		if (Math.abs(lastLatitude) - Math.abs(loc.getLatitude()) > MIN || Math.abs(lastLongitude)- Math.abs(loc.getLongitude()) > MIN) {
+		if (Math.abs(Math.abs(lastLatitude) - Math.abs(loc.getLatitude()) )> MIN || Math.abs(Math.abs(lastLongitude)- Math.abs(loc.getLongitude())) > MIN) {
 			Calendar c = Calendar.getInstance();
 			Date date=c.getTime();
 			Log.wtf("fecha",date.toLocaleString());
