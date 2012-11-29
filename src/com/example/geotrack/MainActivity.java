@@ -19,6 +19,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import com.example.geotrack.MyLocationListener;
@@ -149,9 +151,30 @@ public class MainActivity extends Activity {
 		
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
+		MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.layout.menu, menu);
 		return true;
 	}
+	
+	
+	
+	 @Override
+	    public boolean onOptionsItemSelected(MenuItem item){
+		 switch (item.getItemId()){
+		 
+		 case R.id.menu_delete:
+			 //Toast.makeText(AndroidMenusActivity.this, "Bookmark is Selected", Toast.LENGTH_SHORT).show();
+			DataBase usdbh = new DataBase(this, "DB", null, 1);
+			SQLiteDatabase db = usdbh.getWritableDatabase();
+			db.execSQL("DELETE FROM Positions");
+			db.close();
+			 return true;
+		 case R.id.menu_notdelete:
+			 return true;
+		 default:
+	            return super.onOptionsItemSelected(item);
+	        }
+	    }
 
 	/*
 	 * Go to activity Map

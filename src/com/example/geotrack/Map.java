@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -53,8 +54,8 @@ public class Map extends MapActivity {
 							c.getString(0), "" + latitudeE + " " + longitudeN);
 					itemizedoverlay.addOverlay(overlayitem);
 					while (c.moveToNext()) {
-						latitudeE = (int) c.getDouble(1);
-						longitudeN = (int) c.getDouble(2);
+						latitudeE = (int) c.getDouble(1)*1000000;//GeoPoint only accept integers and it necessary to multiply by 1E6
+						longitudeN = (int) c.getDouble(2)*1000000;
 						GeoPoint point1 = new GeoPoint(latitudeE, longitudeN);
 						OverlayItem overlayitem1 = new OverlayItem(point1,c.getString(0), "" + c.getDouble(1) + " , "+ c.getDouble(2));
 						itemizedoverlay.addOverlay(overlayitem1);
@@ -70,8 +71,9 @@ public class Map extends MapActivity {
 				int latitudeE = 0;
 				int longitudeN = 0;
 				if (c.moveToFirst()) {
-					latitudeE = (int) c.getDouble(1);
-					longitudeN = (int) c.getDouble(2);
+					latitudeE = (int) c.getDouble(1)*1000000;
+					Log.wtf("PUNTO", ""+latitudeE);
+					longitudeN = (int) c.getDouble(2)*1000000;
 				}
 				GeoPoint point = new GeoPoint(latitudeE, longitudeN);
 				//Insert the point on the overlayItem
