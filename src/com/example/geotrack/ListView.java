@@ -8,7 +8,6 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.SimpleAdapter;
@@ -34,7 +33,6 @@ public class ListView extends ListActivity {
         if(db != null){
         	String[] args = new String[] {"1"};
         	Cursor c= db.rawQuery("SELECT * FROM Positions WHERE '1'=?",args);
-        	Log.wtf("NUMERO", ""+c.getCount());
         	if (c.moveToFirst()) {
         		int i=1;
         		 do {
